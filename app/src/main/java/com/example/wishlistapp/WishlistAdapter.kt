@@ -1,5 +1,6 @@
 package com.example.wishlistapp
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,14 @@ class WishlistAdapter(private val items: MutableList<Wishlist>) : RecyclerView.A
         val name: TextView
         val price: TextView
         val link: TextView
+        private val bgs = intArrayOf(R.drawable.background_blue, R.drawable.background_lilac, R.drawable.background_green,
+            R.drawable.background_red, R.drawable.background_orange, R.drawable.background_yellow)
 
         init {
             name = itemView.findViewById<TextView>(R.id.itemName)
             price = itemView.findViewById<TextView>(R.id.itemPrice)
             link = itemView.findViewById<TextView>(R.id.itemLink)
+            itemView.setBackgroundResource(bgs.random())
         }
     }
 
