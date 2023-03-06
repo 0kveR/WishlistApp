@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addPrice: EditText
     private lateinit var addLink: EditText
     private lateinit var wishlistRV: RecyclerView
+    private lateinit var adapter: WishlistAdapter
     private var activeDefault = true
 
     @SuppressLint("NotifyDataSetChanged")
@@ -27,8 +28,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val wishlistItems: MutableList<Wishlist> = mutableListOf(Wishlist("Name", "Price",
-            "URL"))
+        val wishlistItems: MutableList<Wishlist> = mutableListOf(
+            Wishlist(
+                "Name", "Price",
+                "URL"
+            )
+        )
 
         binding.let {
             background = it.background
@@ -39,9 +44,20 @@ class MainActivity : AppCompatActivity() {
             wishlistRV = it.wishlistRV
         }
 
-        val adapter = WishlistAdapter(wishlistItems)
+        adapter = WishlistAdapter(wishlistItems)
         wishlistRV.adapter = adapter
         wishlistRV.layoutManager = LinearLayoutManager(this)
+
+        adapter.listener = object : WishlistAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                wishlistItems.removeAt(position)
+                adapter.notifyItemRemoved(position)
+
+                if (activeDefault) {
+                    activeDefault = false
+                }
+            }
+        }
 
         addBtn.setOnClickListener {
             if (addName.text.isBlank() || addPrice.text.isBlank() || addLink.text.isBlank()) {
@@ -49,8 +65,10 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val item = Wishlist(addName.text.toString(), addPrice.text.toString(),
-                addLink.text.toString())
+            val item = Wishlist(
+                addName.text.toString(), addPrice.text.toString(),
+                addLink.text.toString()
+            )
 
             if (activeDefault) {
                 wishlistItems.removeAt(0)

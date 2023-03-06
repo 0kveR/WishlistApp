@@ -16,7 +16,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [x] Wishlist app is 🎨 **customized** 🎨
-- [ ] User can delete an item by long pressing on the item
+- [x] User can delete an item by long pressing on the item
 - [ ] User can open an item's URL by clicking on the item
 
 The following **additional** features are implemented:
@@ -27,10 +27,10 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/iq2sxoj.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...
+GIF created with Recordit
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
@@ -38,11 +38,11 @@ GIF created with ...
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I had trouble with implementing the remove item feature but ultimately I managed it by using interfaces.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2023 Krrish Verma
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

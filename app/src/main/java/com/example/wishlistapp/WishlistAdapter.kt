@@ -1,13 +1,23 @@
 package com.example.wishlistapp
 
-import android.graphics.drawable.Drawable
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class WishlistAdapter(private val items: MutableList<Wishlist>) : RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+    var listener: OnItemClickListener? = null
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView
         val price: TextView
@@ -34,10 +44,12 @@ class WishlistAdapter(private val items: MutableList<Wishlist>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // Copied from Email Project
-        // Get the data model based on position
         val item = items[position]
-        // Set item views based on views and data model
+
+        holder.itemView.setOnLongClickListener {
+            listener?.onItemClick(position)
+            true
+        }
         holder.name.text = item.name
         holder.price.text = item.price
         holder.link.text = item.link
